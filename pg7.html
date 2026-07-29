@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>One Tiny Agreement ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="hearts">
+
+<span>❤️</span>
+<span>💕</span>
+<span>💖</span>
+<span>🤍</span>
+<span>💗</span>
+<span>❤️</span>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="emoji">
+📜
+</div>
+
+<h1>One Last Thing...</h1>
+
+<p class="description">
+
+Okayyyy 😭❤️
+
+<br><br>
+
+Since we're finally going on a date...
+
+let's make it official with our very own tiny agreement.
+
+<br><br>
+
+You'll just need to confirm your name and then, if you want, you can grab my ₹1 Timepass BF subscription for fun. 😂
+
+<br><br>
+
+Ready? 🌸
+
+</p>
+
+<div class="btnArea">
+
+<button id="okayBtn">
+
+Okayyy ❤️
+
+</button>
+
+<button id="cancelBtn">
+
+Cancel 🙈
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const cancel=document.getElementById("cancelBtn");
+
+const area=document.querySelector(".btnArea");
+
+function moveCancel(){
+
+const rect=area.getBoundingClientRect();
+
+const btnRect=cancel.getBoundingClientRect();
+
+const x=Math.random()*(rect.width-btnRect.width);
+
+const y=Math.random()*(rect.height-btnRect.height);
+
+cancel.style.position="absolute";
+
+cancel.style.left=x+"px";
+
+cancel.style.top=y+"px";
+
+}
+
+cancel.addEventListener("mouseover",moveCancel);
+
+cancel.addEventListener("click",(e)=>{
+
+e.preventDefault();
+
+moveCancel();
+
+});
+
+document.getElementById("okayBtn").onclick=()=>{
+
+document.body.classList.add("fadeOut");
+
+setTimeout(()=>{
+
+window.location.href="pg8.html";
+
+},700);
+
+};
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Big Question ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="hearts">
+<span>❤️</span>
+<span>💕</span>
+<span>💖</span>
+<span>🤍</span>
+<span>💗</span>
+<span>❤️</span>
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="emoji">🌸</div>
+
+<h1>One Last Question...</h1>
+
+<p class="subtitle">
+Would you like to go on a date with me? 🥹❤️
+</p>
+
+<div class="btnArea">
+
+<button id="yesBtn">
+Yes ❤️
+</button>
+
+<button id="noBtn">
+No 🙈
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const noBtn = document.getElementById("noBtn");
+const area = document.querySelector(".btnArea");
+
+let positions = [
+    {x:10,y:60},
+    {x:55,y:60},
+    {x:20,y:15},
+    {x:60,y:20},
+    {x:35,y:95},
+    {x:5,y:100},
+    {x:65,y:100}
+];
+
+let current = 0;
+
+function moveButton(){
+
+    current++;
+
+    if(current >= positions.length){
+
+        current = 0;
+
+    }
+
+    noBtn.style.position="absolute";
+    noBtn.style.left=positions[current].x+"%";
+    noBtn.style.top=positions[current].y+"px";
+
+}
+
+noBtn.addEventListener("mouseenter",moveButton);
+
+noBtn.addEventListener("click",function(e){
+
+e.preventDefault();
+
+moveButton();
+
+});
+
+document.getElementById("yesBtn").onclick=function(){
+
+document.body.classList.add("fadeOut");
+
+setTimeout(function(){
+
+window.location.href="pg4.html";
+
+},700);
+
+}
+
+</script>
+
+</body>
+</html>

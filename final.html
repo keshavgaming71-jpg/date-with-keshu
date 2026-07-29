@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>See You Soon ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="hearts">
+
+<span>❤️</span>
+<span>💕</span>
+<span>💖</span>
+<span>🤍</span>
+<span>💗</span>
+<span>❤️</span>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="emoji">
+🥹❤️
+</div>
+
+<h1>It's Official!!</h1>
+
+<p class="subtitle">
+
+Our tiny agreement has been completed.
+
+</p>
+
+<h2 id="meetingDate" class="datePreview">
+Loading...
+</h2>
+
+<p class="description">
+
+Thank you for spending a few minutes here.
+
+<br><br>
+
+I genuinely had fun making this.
+
+<br><br>
+
+See you soon. 🌸
+
+</p>
+
+<h2 id="countdown" style="color:#ff4d94;"></h2>
+
+<button onclick="location.reload()">
+
+Read Again ❤️
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+confetti({
+
+particleCount:250,
+
+spread:150,
+
+origin:{y:0.6}
+
+});
+
+const savedDate=localStorage.getItem("meetingDate");
+
+if(savedDate){
+
+const formatted=new Date(savedDate).toLocaleDateString(
+
+'en-IN',
+
+{
+
+weekday:'long',
+
+day:'numeric',
+
+month:'long',
+
+year:'numeric'
+
+}
+
+);
+
+document.getElementById("meetingDate").innerHTML=
+
+"📅 See you on<br>"+formatted;
+
+const today=new Date();
+
+const meet=new Date(savedDate);
+
+const diff=Math.ceil((meet-today)/(1000*60*60*24));
+
+if(diff>0){
+
+document.getElementById("countdown").innerHTML=
+
+"Only "+diff+" day(s) left ❤️";
+
+}else{
+
+document.getElementById("countdown").innerHTML=
+
+"It's today!! 🥳";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

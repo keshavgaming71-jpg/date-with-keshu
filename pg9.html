@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>One Last Step ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="hearts">
+
+<span>❤️</span>
+<span>💕</span>
+<span>💖</span>
+<span>🤍</span>
+<span>💗</span>
+<span>❤️</span>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="emoji">
+☕
+</div>
+
+<h1>One Last Step...</h1>
+
+<p class="description">
+
+If you enjoyed this little website,
+
+you can unlock the
+
+<b>Timepass BF Subscription</b> 😂❤️
+
+for just
+
+<h2 style="color:#ff4d94;font-size:40px;margin:20px 0;">
+₹1
+</h2>
+
+This is a real and completely optional UPI payment.
+
+</p>
+
+<button id="payBtn">
+
+Subscribe for ₹1 ❤️
+
+</button>
+
+<br><br>
+
+<button id="skipBtn" class="secondaryBtn">
+
+Skip ❤️
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const upi="upi://pay?pa=keshav71@fam&pn=Keshuu%20(Namkeen)&am=1&cu=INR&tn=Timepass%20BF";
+
+document.getElementById("payBtn").onclick=()=>{
+
+window.location.href="payment.html";
+
+};
+
+document.getElementById("skipBtn").onclick=()=>{
+
+document.body.classList.add("fadeOut");
+
+setTimeout(()=>{
+
+window.location.href="final.html";
+
+},700);
+
+};
+
+</script>
+
+</body>
+
+</html>

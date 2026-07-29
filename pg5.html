@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Choose Our Date ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="hearts">
+<span>❤️</span>
+<span>💕</span>
+<span>💖</span>
+<span>🤍</span>
+<span>💗</span>
+<span>❤️</span>
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="emoji">
+📅
+</div>
+
+<h1>So...</h1>
+
+<p class="subtitle">
+When are we going to meet? 🥹❤️
+</p>
+
+<input
+type="date"
+id="meetingDate"
+class="dateInput"
+>
+
+<button id="finalBtn">
+Finalize This Date ❤️
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const input=document.getElementById("meetingDate");
+
+const today=new Date();
+
+const yyyy=today.getFullYear();
+
+const mm=String(today.getMonth()+1).padStart(2,"0");
+
+const dd=String(today.getDate()).padStart(2,"0");
+
+const minDate=`${yyyy}-${mm}-${dd}`;
+
+input.min=minDate;
+
+input.max="2026-12-31";
+
+document.getElementById("finalBtn").onclick=()=>{
+
+if(input.value===""){
+
+alert("Please choose a date first ❤️");
+
+return;
+
+}
+
+const formattedDate = new Date(input.value).toLocaleDateString("en-IN", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+});
+
+localStorage.setItem("meetingDate", formattedDate);
+
+document.body.classList.add("fadeOut");
+
+setTimeout(()=>{
+
+window.location.href="pg6.html";
+
+},700);
+
+}
+
+</script>
+
+</body>
+
+</html>

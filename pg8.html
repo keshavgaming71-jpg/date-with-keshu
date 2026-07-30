@@ -106,7 +106,7 @@ const savedDate = localStorage.getItem("meetingDate");
 
 if(!savedDate){
     window.location.href="pg5.html";
-}
+}else{
 
 const formattedDate = new Date(savedDate).toLocaleDateString("en-IN",{
     weekday:"long",
@@ -173,6 +173,8 @@ document.getElementById("confirmAgreement").addEventListener("click",()=>{
     });
 
 });
+
+}
 
 </script>
 

@@ -12,6 +12,28 @@
 
 <link rel="stylesheet" href="css/style.css">
 
+<style>
+
+.infoBox{
+margin:18px 0;
+padding:15px;
+border-radius:15px;
+background:#fff5fa;
+border:2px solid #ffd6e8;
+}
+
+.infoBox p{
+margin:8px 0;
+font-size:16px;
+}
+
+#copyBtn,#paidBtn{
+margin-top:15px;
+width:100%;
+}
+
+</style>
+
 </head>
 
 <body>
@@ -33,50 +55,77 @@
 💖
 </div>
 
-<h1>Complete Your Subscription ❤️</h1>
+<h1>My Love Subscription</h1>
 
 <p class="subtitle">
-My Love Subscription
+A tiny ₹1 to continue our date journey together ❤️
 </p>
 
 <h2 class="price">
 ₹1
 </h2>
 
-<p style="margin-top:15px;">
-Complete this tiny subscription so we can continue our date journey together. 🥹❤️
+<div class="infoBox">
+
+<p>
+<b>👩 Name:</b>
+<span id="girlName"></span>
 </p>
+
+<p>
+<b>📅 Meeting Date:</b>
+<span id="meetingDate"></span>
+</p>
+
+</div>
 
 <hr>
 
 <div class="paymentDetails">
 
-<p><b>Receiver</b></p>
+<p><b>💳 Receiver</b></p>
 <p>Keshuu (Namkeen)</p>
 
 <br>
 
-<p><b>UPI ID</b></p>
-<p>keshav71@fam</p>
+<p><b>🏦 UPI ID</b></p>
+
+<p id="upiText">
+keshav71@fam
+</p>
 
 </div>
 
 <br>
 
+<button id="copyBtn">
+
+📋 Copy UPI ID
+
+</button>
+
+<br><br>
+
 <button id="payBtn">
-Pay ₹1 ❤️
+
+💖 Pay ₹1
+
 </button>
 
 <br><br>
 
 <button id="paidBtn">
-I Have Paid ❤️
+
+❤️ I Have Paid
+
 </button>
 
 <br><br>
 
 <button id="backBtn" class="secondaryBtn">
-Go Back
+
+⬅️ Go Back
+
 </button>
 
 </div>
@@ -85,36 +134,60 @@ Go Back
 
 <script>
 
-const upi =
-"upi://pay?pa=keshav71@fam&pn=Keshuu%20(Namkeen)&am=1&cu=INR&tn=My%20Love%20Subscription";
+const girlName = localStorage.getItem("girlName") || "Someone Special ❤️";
 
-document.getElementById("payBtn").onclick=function(){
+const meetingDate = localStorage.getItem("meetingDate");
 
-if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){
+document.getElementById("girlName").innerHTML = girlName;
 
-window.location.href=upi;
+if(meetingDate){
+
+const formatted = new Date(meetingDate).toLocaleDateString("en-IN",{
+
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+
+});
+
+document.getElementById("meetingDate").innerHTML = formatted;
 
 }else{
 
-alert("Please open this website on your phone to complete the UPI payment ❤️");
+document.getElementById("meetingDate").innerHTML = "Not Selected";
 
 }
 
-}
+const upi="upi://pay?pa=keshav71@fam&pn=Keshuu%20(Namkeen)&am=1.00&cu=INR&tn=My%20Love%20Subscription";
 
-document.getElementById("paidBtn").onclick=function(){
+document.getElementById("payBtn").onclick=()=>{
+
+window.location.href=upi;
+
+};
+
+document.getElementById("copyBtn").onclick=()=>{
+
+navigator.clipboard.writeText("keshav71@fam");
+
+alert("UPI ID copied successfully ❤️");
+
+};
+
+document.getElementById("paidBtn").onclick=()=>{
 
 alert("Thank you so much! ❤️");
 
 window.location.href="final.html";
 
-}
+};
 
-document.getElementById("backBtn").onclick=function(){
+document.getElementById("backBtn").onclick=()=>{
 
 history.back();
 
-}
+};
 
 </script>
 

@@ -54,17 +54,21 @@ No 🙈
 
 <script>
 
-const noBtn = document.getElementById("noBtn");
-const area = document.querySelector(".btnArea");
+<script>
 
-let positions = [
-    {x:10,y:60},
-    {x:55,y:60},
-    {x:20,y:15},
-    {x:60,y:20},
-    {x:35,y:95},
-    {x:5,y:100},
-    {x:65,y:100}
+const noBtn = document.getElementById("noBtn");
+
+const positions = [
+
+    {x:10, y:10},
+    {x:60, y:10},
+    {x:20, y:30},
+    {x:65, y:30},
+    {x:8,  y:50},
+    {x:55, y:50},
+    {x:35, y:15},
+    {x:40, y:40}
+
 ];
 
 let current = 0;
@@ -74,39 +78,44 @@ function moveButton(){
     current++;
 
     if(current >= positions.length){
-
         current = 0;
-
     }
 
-    noBtn.style.position="absolute";
-    noBtn.style.left=positions[current].x+"%";
-    noBtn.style.top=positions[current].y+"px";
+    noBtn.style.position = "fixed";
+    noBtn.style.left = positions[current].x + "%";
+    noBtn.style.top = positions[current].y + "%";
 
 }
 
-noBtn.addEventListener("mouseenter",moveButton);
+noBtn.addEventListener("mouseenter", moveButton);
 
-noBtn.addEventListener("click",function(e){
+noBtn.addEventListener("touchstart", function(e){
 
-e.preventDefault();
-
-moveButton();
+    e.preventDefault();
+    moveButton();
 
 });
 
-document.getElementById("yesBtn").onclick=function(){
+noBtn.addEventListener("click", function(e){
 
-document.body.classList.add("fadeOut");
+    e.preventDefault();
+    moveButton();
 
-setTimeout(function(){
+});
 
-window.location.href="pg4.html";
+document.getElementById("yesBtn").onclick = function(){
 
-},700);
+    document.body.classList.add("fadeOut");
+
+    setTimeout(function(){
+
+        window.location.href = "pg4.html";
+
+    },700);
 
 }
 
+</script>
 </script>
 
 </body>

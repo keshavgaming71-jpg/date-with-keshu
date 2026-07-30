@@ -6,10 +6,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>One Tiny Agreement ❤️</title>
+<title>Date Agreement ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -17,114 +16,165 @@
 <body>
 
 <div class="hearts">
-
 <span>❤️</span>
 <span>💕</span>
 <span>💖</span>
 <span>🤍</span>
 <span>💗</span>
 <span>❤️</span>
-
 </div>
 
 <div class="container">
 
-<div class="card">
+<div class="agreementCard">
 
-<div class="emoji">
-📜
-</div>
+<h1>📜 Date Agreement</h1>
 
-<h1>One Last Thing...</h1>
+<p class="agreementText">
 
-<p class="description">
-
-Okayyyy 😭❤️
+This agreement confirms that
 
 <br><br>
 
-Since we're finally going on a date...
+<strong>Keshav</strong>
 
-let's make it official with our very own tiny agreement.
+<br>
 
-<br><br>
-
-You'll just need to confirm your name and then, if you want, you can grab my ₹1 Timepass BF subscription for fun. 😂
+and
 
 <br><br>
 
-Ready? 🌸
+<input
+type="text"
+id="girlName"
+class="nameInput"
+placeholder="Type your name here ❤️"
+maxlength="30">
+
+<br><br>
+
+have happily agreed to meet on
 
 </p>
 
-<div class="btnArea">
+<h2 id="meetingDateText"></h2>
 
-<button id="okayBtn">
+<div class="rules">
 
-Okayyy ❤️
+<h3>Terms & Conditions</h3>
 
+<p>❤️ We will try our best to be on time.</p>
+<p>❤️ No ghosting allowed.</p>
+<p>❤️ Smiles are compulsory.</p>
+<p>❤️ We will enjoy every moment.</p>
+<p>❤️ We'll make beautiful memories together.</p>
+
+</div>
+
+<div class="signatureArea">
+
+<div>
+<p><strong>Keshav</strong></p>
+<p class="signName">Keshav</p>
+</div>
+
+<div>
+<p><strong>Your Name</strong></p>
+<p id="previewName" class="signName">______________</p>
+</div>
+
+</div>
+
+<button id="confirmAgreement">
+Confirm Agreement ❤️
 </button>
 
-<button id="cancelBtn">
-
-Cancel 🙈
-
-</button>
-
 </div>
 
 </div>
 
-</div>
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
 
-const cancel=document.getElementById("cancelBtn");
+emailjs.init({
+    publicKey: "niOuxHNg0jG78t7wn"
+});
 
-const area=document.querySelector(".btnArea");
+const savedDate = localStorage.getItem("meetingDate");
 
-function moveCancel(){
-
-const rect=area.getBoundingClientRect();
-
-const btnRect=cancel.getBoundingClientRect();
-
-const x=Math.random()*(rect.width-btnRect.width);
-
-const y=Math.random()*(rect.height-btnRect.height);
-
-cancel.style.position="absolute";
-
-cancel.style.left=x+"px";
-
-cancel.style.top=y+"px";
-
+if(!savedDate){
+    window.location.href="pg5.html";
 }
 
-cancel.addEventListener("mouseover",moveCancel);
+const formattedDate = new Date(savedDate).toLocaleDateString("en-IN",{
+    weekday:"long",
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+});
 
-cancel.addEventListener("click",(e)=>{
+document.getElementById("meetingDateText").innerHTML="📅 "+formattedDate;
 
-e.preventDefault();
+const input=document.getElementById("girlName");
 
-moveCancel();
+input.addEventListener("input",()=>{
+
+    document.getElementById("previewName").innerHTML=
+    input.value || "______________";
 
 });
 
-document.getElementById("okayBtn").onclick=()=>{
+document.getElementById("confirmAgreement").addEventListener("click",()=>{
 
-document.body.classList.add("fadeOut");
+    if(input.value.trim()===""){
 
-setTimeout(()=>{
+        alert("Please enter your name ❤️");
+        return;
 
-window.location.href="pg8.html";
+    }
 
-},700);
+    localStorage.setItem("girlName",input.value);
 
-};
+    emailjs.send(
+        "service_02kskqb",
+        "template_hvkah9c",
+        {
+
+            from_name: input.value,
+
+            meeting_date: formattedDate,
+
+            subscription: "Timepass BF ₹1",
+
+            payment_status: "Pending",
+
+            submit_time: new Date().toLocaleString("en-IN")
+
+        }
+
+    ).then(()=>{
+
+        document.body.classList.add("fadeOut");
+
+        setTimeout(()=>{
+
+            window.location.href="pg9.html";
+
+        },700);
+
+    }).catch((error)=>{
+
+        console.error(error);
+
+        alert("Agreement couldn't be sent. Please try again.");
+
+    });
+
+});
 
 </script>
 
 </body>
-
 </html>

@@ -27,7 +27,7 @@ margin:8px 0;
 font-size:16px;
 }
 
-#copyBtn,#paidBtn{
+#copyBtn,#paidBtn,#skipBtn,#backBtn{
 margin-top:15px;
 width:100%;
 }
@@ -99,94 +99,134 @@ keshav71@fam
 <br>
 
 <button id="copyBtn">
-
 📋 Copy UPI ID
-
 </button>
 
 <br><br>
 
 <button id="payBtn">
-
 💖 Pay ₹1
-
 </button>
 
 <br><br>
 
 <button id="paidBtn">
-
-❤️ I Have Paid
-
+✅ I've Paid
 </button>
 
 <br><br>
 
-<button id="backBtn" class="secondaryBtn">
+<button id="skipBtn">
+⏭️ Skip Payment
+</button>
 
-⬅️ Go Back
+<br><br>
 
+<button id="backBtn">
+⬅️ Back
 </button>
 
 </div>
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script>
 
-const girlName = localStorage.getItem("girlName") || "Someone Special ❤️";
+emailjs.init({
+    publicKey: "niOuxHNg0jG78t7wn"
+});
 
+const girlName = localStorage.getItem("girlName") || "Someone Special ❤️";
 const meetingDate = localStorage.getItem("meetingDate");
 
 document.getElementById("girlName").innerHTML = girlName;
 
 if(meetingDate){
 
-const formatted = new Date(meetingDate).toLocaleDateString("en-IN",{
+    const formatted = new Date(meetingDate).toLocaleDateString("en-IN",{
+        weekday:"long",
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+    });
 
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
-
-});
-
-document.getElementById("meetingDate").innerHTML = formatted;
+    document.getElementById("meetingDate").innerHTML = formatted;
 
 }else{
 
-document.getElementById("meetingDate").innerHTML = "Not Selected";
+    document.getElementById("meetingDate").innerHTML = "Not Selected";
 
 }
 
 const upi="upi://pay?pa=keshav71@fam&pn=Keshuu%20(Namkeen)&am=1.00&cu=INR&tn=My%20Love%20Subscription";
 
 document.getElementById("payBtn").onclick=()=>{
-
-window.location.href=upi;
-
+    window.location.href=upi;
 };
 
 document.getElementById("copyBtn").onclick=()=>{
+    navigator.clipboard.writeText("keshav71@fam");
+    alert("UPI ID copied successfully ❤️");
+};
 
-navigator.clipboard.writeText("keshav71@fam");
+function formattedMeetingDate(){
+    return meetingDate
+        ? new Date(meetingDate).toLocaleDateString("en-IN",{
+            weekday:"long",
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        })
+        : "Not Selected";
+}
 
-alert("UPI ID copied successfully ❤️");
+document.getElementById("paidBtn").onclick = () => {
+
+    emailjs.send(
+        "service_02kskqb",
+        "template_akw7l1c",
+        {
+            from_name: girlName,
+            meeting_date: formattedMeetingDate(),
+            subscription: "My Love Subscription ❤️",
+            payment_status: "✅ Completed",
+            submit_time: new Date().toLocaleString("en-IN")
+        }
+    ).then(()=>{
+        alert("Thank you for your payment ❤️");
+        window.location.href="final.html";
+    }).catch((err)=>{
+        console.error(err);
+        alert("Couldn't send confirmation email.");
+    });
 
 };
 
-document.getElementById("paidBtn").onclick=()=>{
+document.getElementById("skipBtn").onclick = () => {
 
-alert("Thank you so much! ❤️");
-
-window.location.href="final.html";
+    emailjs.send(
+        "service_02kskqb",
+        "template_akw7l1c",
+        {
+            from_name: girlName,
+            meeting_date: formattedMeetingDate(),
+            subscription: "My Love Subscription ❤️",
+            payment_status: "❌ Skipped",
+            submit_time: new Date().toLocaleString("en-IN")
+        }
+    ).then(()=>{
+        window.location.href="final.html";
+    }).catch((err)=>{
+        console.error(err);
+        alert("Couldn't send email.");
+    });
 
 };
 
 document.getElementById("backBtn").onclick=()=>{
-
-history.back();
-
+    history.back();
 };
 
 </script>

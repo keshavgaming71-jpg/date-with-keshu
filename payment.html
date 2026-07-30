@@ -84,14 +84,14 @@ A tiny ₹1 to continue our date journey together ❤️
 <div class="paymentDetails">
 
 <p><b>💳 Receiver</b></p>
-<p>Keshav </p>
+<p>Keshuu (Namkeen)</p>
 
 <br>
 
 <p><b>🏦 UPI ID</b></p>
 
 <p id="upiText">
-9518244890@ibl
+keshav71@fam
 </p>
 
 </div>
@@ -109,6 +109,13 @@ A tiny ₹1 to continue our date journey together ❤️
 </button>
 
 <br><br>
+
+<div id="qrBox" style="display:none; text-align:center; margin-top:10px;">
+<p style="font-size:14px; color:#888;">App direct nahi khula? Isse camera se scan karo 👇</p>
+<img id="qrImg" alt="UPI QR Code" style="width:200px; height:200px; border-radius:10px; border:2px solid #ffd6e8;">
+</div>
+
+<br>
 
 <button id="paidBtn">
 ✅ I've Paid
@@ -164,6 +171,10 @@ const upi="upi://pay?pa=keshav71@fam&pn=Keshav&am=1.00&cu=INR&tn=MyLoveSubscript
 
 document.getElementById("payBtn").onclick=()=>{
     window.location.href=upi;
+
+    const qrImg = document.getElementById("qrImg");
+    qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(upi);
+    document.getElementById("qrBox").style.display = "block";
 };
 
 document.getElementById("copyBtn").onclick=()=>{

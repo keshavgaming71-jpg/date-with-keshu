@@ -52,51 +52,44 @@ No 🙈
 
 </div>
 
-<script>
-
-<script>
+    <script> 
 
 const noBtn = document.getElementById("noBtn");
 
 const positions = [
-
-    {x:10, y:10},
-    {x:60, y:10},
-    {x:20, y:30},
-    {x:65, y:30},
-    {x:8,  y:50},
-    {x:55, y:50},
-    {x:35, y:15},
-    {x:40, y:40}
-
+    {x:20,y:20},
+    {x:60,y:20},
+    {x:15,y:45},
+    {x:65,y:45},
+    {x:35,y:10},
+    {x:45,y:55},
+    {x:10,y:35},
+    {x:70,y:30}
 ];
 
 let current = 0;
 
 function moveButton(){
 
-    current++;
+    current = (current + 1) % positions.length;
 
-    if(current >= positions.length){
-        current = 0;
-    }
-
-    noBtn.style.position = "fixed";
     noBtn.style.left = positions[current].x + "%";
     noBtn.style.top = positions[current].y + "%";
+    noBtn.style.bottom = "auto";
+    noBtn.style.transform = "none";
 
 }
 
 noBtn.addEventListener("mouseenter", moveButton);
 
-noBtn.addEventListener("touchstart", function(e){
+noBtn.addEventListener("click", function(e){
 
     e.preventDefault();
     moveButton();
 
 });
 
-noBtn.addEventListener("click", function(e){
+noBtn.addEventListener("touchstart", function(e){
 
     e.preventDefault();
     moveButton();
@@ -113,10 +106,10 @@ document.getElementById("yesBtn").onclick = function(){
 
     },700);
 
-}
+};
 
-</script>
-</script>
 
+        </script>
+    
 </body>
 </html>

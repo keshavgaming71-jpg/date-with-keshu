@@ -52,64 +52,62 @@ No 🙈
 
 </div>
 
-    <script> 
+<script>
 
 const noBtn = document.getElementById("noBtn");
+const area = document.querySelector(".btnArea");
 
-const positions = [
-    {x:20,y:20},
+let positions = [
+    {x:10,y:60},
+    {x:55,y:60},
+    {x:20,y:15},
     {x:60,y:20},
-    {x:15,y:45},
-    {x:65,y:45},
-    {x:35,y:10},
-    {x:45,y:55},
-    {x:10,y:35},
-    {x:70,y:30}
+    {x:35,y:95},
+    {x:5,y:100},
+    {x:65,y:100}
 ];
 
 let current = 0;
 
 function moveButton(){
 
-    current = (current + 1) % positions.length;
+    current++;
 
-    noBtn.style.left = positions[current].x + "%";
-    noBtn.style.top = positions[current].y + "%";
-    noBtn.style.bottom = "auto";
-    noBtn.style.transform = "none";
+    if(current >= positions.length){
+
+        current = 0;
+
+    }
+
+    noBtn.style.position="absolute";
+    noBtn.style.left=positions[current].x+"%";
+    noBtn.style.top=positions[current].y+"px";
 
 }
 
-noBtn.addEventListener("mouseenter", moveButton);
+noBtn.addEventListener("mouseenter",moveButton);
 
-noBtn.addEventListener("click", function(e){
+noBtn.addEventListener("click",function(e){
 
-    e.preventDefault();
-    moveButton();
+e.preventDefault();
 
-});
-
-noBtn.addEventListener("touchstart", function(e){
-
-    e.preventDefault();
-    moveButton();
+moveButton();
 
 });
 
-document.getElementById("yesBtn").onclick = function(){
+document.getElementById("yesBtn").onclick=function(){
 
-    document.body.classList.add("fadeOut");
+document.body.classList.add("fadeOut");
 
-    setTimeout(function(){
+setTimeout(function(){
 
-        window.location.href = "pg4.html";
+window.location.href="pg4.html";
 
-    },700);
+},700);
 
-};
+}
 
+</script>
 
-        </script>
-    
 </body>
 </html>
